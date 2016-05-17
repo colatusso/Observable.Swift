@@ -22,6 +22,8 @@ c // 3
 For more info take a look at the example project:
 
 ```swift
+// using Observable<T>
+
 self.word.valueDidChange = {
     self.label.text = self.word.value
     self.label.textColor = self.getRandomColor()
@@ -29,4 +31,14 @@ self.word.valueDidChange = {
 ```
 
 ![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable.gif)
+
+```swift
+// using ObservableTextField
+
+self.textField.valueDidChange = {(text: String) -> () in
+	self.label.text = "Hi \(text)!"
+}
+```
+
+![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable2.gif)
 

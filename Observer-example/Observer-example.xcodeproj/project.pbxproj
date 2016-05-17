@@ -12,7 +12,8 @@
 		53805DC91CEA922E003186BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53805DC71CEA922E003186BF /* Main.storyboard */; };
 		53805DCB1CEA922E003186BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53805DCA1CEA922E003186BF /* Assets.xcassets */; };
 		53805DCE1CEA922E003186BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53805DCC1CEA922E003186BF /* LaunchScreen.storyboard */; };
-		53805DD71CEA9510003186BF /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53805DD61CEA9510003186BF /* Observer.swift */; };
+		53805DD71CEA9510003186BF /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53805DD61CEA9510003186BF /* Observable.swift */; };
+		53805DD91CEB81F8003186BF /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53805DD81CEB81F8003186BF /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +24,8 @@
 		53805DCA1CEA922E003186BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53805DCD1CEA922E003186BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53805DCF1CEA922E003186BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53805DD61CEA9510003186BF /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Observer.swift; path = ../../Observer/Observer.swift; sourceTree = "<group>"; };
+		53805DD61CEA9510003186BF /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = ../../Observable/Observable.swift; sourceTree = "<group>"; };
+		53805DD81CEB81F8003186BF /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				53805DCA1CEA922E003186BF /* Assets.xcassets */,
 				53805DCC1CEA922E003186BF /* LaunchScreen.storyboard */,
 				53805DCF1CEA922E003186BF /* Info.plist */,
+				53805DD81CEB81F8003186BF /* SecondViewController.swift */,
 			);
 			path = "Observer-example";
 			sourceTree = "<group>";
@@ -70,7 +73,7 @@
 		53805DD51CEA9501003186BF /* Observable */ = {
 			isa = PBXGroup;
 			children = (
-				53805DD61CEA9510003186BF /* Observer.swift */,
+				53805DD61CEA9510003186BF /* Observable.swift */,
 			);
 			name = Observable;
 			sourceTree = "<group>";
@@ -146,8 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53805DD91CEB81F8003186BF /* SecondViewController.swift in Sources */,
 				53805DC61CEA922E003186BF /* ViewController.swift in Sources */,
-				53805DD71CEA9510003186BF /* Observer.swift in Sources */,
+				53805DD71CEA9510003186BF /* Observable.swift in Sources */,
 				53805DC41CEA922E003186BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +302,7 @@
 				53805DD41CEA922E003186BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

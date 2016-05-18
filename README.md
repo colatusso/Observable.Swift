@@ -19,8 +19,40 @@ n.value = 3
 c // 3
 ```
 
-For more info take a look at the example project:  
-ObservableTextField  
+For more features like ObservableTextField take a look at the example project.  
+ObservableSwitch:  
+With the ObservableSwitch you are able to combine signals and run some code depending on the status result.
+Bellow you can see how we can enable/disable a UIButton based on the length of the username and password fields.
+
+```swift
+        let obSwitch = ObservableSwitch()
+        
+        // .count is a custom property from ObservableTextField used
+        // to get the correct count value inside the UITextField
+        // shouldChangeCharactersInRange delegate method
+
+        obSwitch.addSignal({ self.username.count >= 4 })
+        obSwitch.addSignal({ self.password.count >= 4 })
+        
+        obSwitch.action = { (status: Bool) -> () in
+            self.signin.alpha   = (status) ? 1 : 0.5
+            self.signin.enabled = status
+        }
+        
+        // .validate checks all signals inside the switch
+        // and return the status to the .action callback
+        self.username.valueDidChange = { (text: String) -> () in
+            obSwitch.validate()
+        }
+        
+        self.password.valueDidChange = { (text: String) -> () in
+            obSwitch.validate()
+        }
+```
+
+![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable3.gif)
+
+ObservableTextField:  
 
 ```swift
 self.textField.valueDidChange = {(text: String) -> () in
@@ -30,7 +62,7 @@ self.textField.valueDidChange = {(text: String) -> () in
 
 ![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable2.gif)
 
-Observable<T>  
+Observable<T>:  
 
 ```swift
 self.word.valueDidChange = {

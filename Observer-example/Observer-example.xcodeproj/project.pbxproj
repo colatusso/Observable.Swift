@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530D4B941CECA59B00641F65 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530D4B931CECA59B00641F65 /* ThirdViewController.swift */; };
 		53805DC41CEA922E003186BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53805DC31CEA922E003186BF /* AppDelegate.swift */; };
 		53805DC61CEA922E003186BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53805DC51CEA922E003186BF /* ViewController.swift */; };
 		53805DC91CEA922E003186BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53805DC71CEA922E003186BF /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		530D4B931CECA59B00641F65 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		53805DC01CEA922E003186BF /* Observer-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Observer-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53805DC31CEA922E003186BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53805DC51CEA922E003186BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				53805DC31CEA922E003186BF /* AppDelegate.swift */,
 				53805DC51CEA922E003186BF /* ViewController.swift */,
 				53805DD81CEB81F8003186BF /* SecondViewController.swift */,
+				530D4B931CECA59B00641F65 /* ThirdViewController.swift */,
 				53805DCA1CEA922E003186BF /* Assets.xcassets */,
 				53805DCC1CEA922E003186BF /* LaunchScreen.storyboard */,
 				53805DC71CEA922E003186BF /* Main.storyboard */,
@@ -151,6 +154,7 @@
 			files = (
 				53805DD91CEB81F8003186BF /* SecondViewController.swift in Sources */,
 				53805DC61CEA922E003186BF /* ViewController.swift in Sources */,
+				530D4B941CECA59B00641F65 /* ThirdViewController.swift in Sources */,
 				53805DD71CEA9510003186BF /* Observable.swift in Sources */,
 				53805DC41CEA922E003186BF /* AppDelegate.swift in Sources */,
 			);

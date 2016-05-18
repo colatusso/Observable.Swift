@@ -50,7 +50,7 @@ self.password.valueDidChange = { (text: String) -> () in
 }
 ```
 
-![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable3.gif)
+![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/example-images/Observable3.gif)
 
 ObservableTextField:  
 
@@ -60,7 +60,7 @@ self.textField.valueDidChange = {(text: String) -> () in
 }
 ```
 
-![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable2.gif)
+![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/example-images/Observable2.gif)
 
 Observable<T>:  
 
@@ -71,7 +71,7 @@ self.word.valueDidChange = {
 }
 ```
 
-![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable.gif)
+![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/example-images/Observable.gif)
 
 ## License
 All this code is released under the MIT license.

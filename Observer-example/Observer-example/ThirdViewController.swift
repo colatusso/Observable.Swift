@@ -17,21 +17,12 @@ class ThirdViewController: UIViewController {
         super.viewDidLoad()
         
         let obSwitch = ObservableSwitch()
-        
-        obSwitch.addSignal({ self.username.count >= 4 })
-        obSwitch.addSignal({ self.password.count >= 4 })
-        
         obSwitch.action = { (status: Bool) -> () in
             self.signin.alpha   = (status) ? 1 : 0.5
             self.signin.enabled = status
         }
         
-        self.username.valueDidChange = { (text: String) -> () in
-            obSwitch.validate()
-        }
-        
-        self.password.valueDidChange = { (text: String) -> () in
-            obSwitch.validate()
-        }
+        self.username.addSignal({ self.username.count >= 4 }, toSwitch: obSwitch)
+        self.password.addSignal({ self.password.count >= 4 }, toSwitch: obSwitch)
     }
 }

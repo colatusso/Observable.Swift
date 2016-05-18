@@ -16,11 +16,11 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textField.valueDidChange = {(text: String) -> () in
+        self.textField.textDidChange = {(text: String) -> () in
             self.label.text = "Hi \(text)!"
         }
         
-        self.textView.valueDidChange = {(text: String) -> () in
+        self.textView.textDidChange = {(text: String) -> () in
             print(text)
         }
     }

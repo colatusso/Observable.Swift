@@ -1,10 +1,14 @@
 import UIKit
 
 class Observable<T> {
+    var valueDidChange:(()->())?
+    private var _switch: ObservableSwitch?
     private var _value: T? = nil
+    
     var value: T {
         set {
             self._value = newValue
+            self._switch?.validate()
             self.valueDidChange?()
         }
         get {
@@ -12,17 +16,19 @@ class Observable<T> {
         }
     }
     
-    var valueDidChange:(()->())?
-    var endPoint: ObservableSwitch?
-    
     init(_ value: T) {
         self.value = value
+    }
+    
+    func addSignal(signal: () -> Bool, toSwitch: ObservableSwitch) {
+        self._switch = toSwitch
+        self._switch?.addSignal(signal)
     }
 }
 
 class ObservableTextField: UITextField, UITextFieldDelegate {
-    var valueDidChange:((text: String)->())?
-    var endPoint: ObservableSwitch?
+    var textDidChange:((text: String)->())?
+    private var _switch: ObservableSwitch?
     var count = 0
     
     required init(coder aDecoder: NSCoder) {
@@ -36,20 +42,26 @@ class ObservableTextField: UITextField, UITextFieldDelegate {
                 // backspace
                 let str = self.text!.substringToIndex(self.text!.endIndex.predecessor())
                 self.count = str.characters.count
-                self.valueDidChange?(text: str)
+                self.textDidChange?(text: str)
             default:
                 self.count = self.text!.characters.count + string.characters.count
-                self.valueDidChange?(text: self.text! + string)
+                self.textDidChange?(text: self.text! + string)
         }
+        
+        self._switch?.validate()
 
         return true
     }
     
+    func addSignal(signal: () -> Bool, toSwitch: ObservableSwitch) {
+        self._switch = toSwitch
+        self._switch?.addSignal(signal)
+    }
 }
 
 class ObservableTextView: UITextView, UITextViewDelegate {
-    var valueDidChange:((text: String)->())?
-    var endPoint: ObservableSwitch?
+    var textDidChange:((text: String)->())?
+    private var _switch: ObservableSwitch?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -57,7 +69,13 @@ class ObservableTextView: UITextView, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
-        self.valueDidChange?(text: textView.text)
+        self._switch?.validate()
+        self.textDidChange?(text: textView.text)
+    }
+    
+    func addSignal(signal: () -> Bool, toSwitch: ObservableSwitch) {
+        self._switch = toSwitch
+        self._switch?.addSignal(signal)
     }
 }
 
@@ -65,11 +83,11 @@ class ObservableSwitch {
     private var signals: [() -> Bool] = []
     var action:((status: Bool)->())?
     
-    func addSignal(signal: () -> Bool) {
+    private func addSignal(signal: () -> Bool) {
         self.signals.append(signal)
     }
     
-    func validate() {
+    private func validate() {
         for check in signals {
             if !check() {
                 self.action?(status: false)

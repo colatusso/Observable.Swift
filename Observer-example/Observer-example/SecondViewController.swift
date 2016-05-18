@@ -10,6 +10,7 @@ import UIKit
 
 class SecondViewController: UIViewController {
     @IBOutlet var textField: ObservableTextField!
+    @IBOutlet var textView: ObservableTextView!
     @IBOutlet var label: UILabel!
     
     override func viewDidLoad() {
@@ -17,6 +18,10 @@ class SecondViewController: UIViewController {
         
         self.textField.valueDidChange = {(text: String) -> () in
             self.label.text = "Hi \(text)!"
+        }
+        
+        self.textView.valueDidChange = {(text: String) -> () in
+            print(text)
         }
     }
 }

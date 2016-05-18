@@ -31,7 +31,6 @@ class ObservableTextField: UITextField, UITextFieldDelegate {
         switch string {
             case "":
                 // backspace 
-                
                 let str = self.text!.substringToIndex(self.text!.endIndex.predecessor())
                 self.valueDidChange?(text: str)
             default:
@@ -39,5 +38,18 @@ class ObservableTextField: UITextField, UITextFieldDelegate {
         }
 
         return true
+    }
+}
+
+class ObservableTextView: UITextView, UITextViewDelegate {
+    var valueDidChange:((text: String)->())?
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        self.delegate = self
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        self.valueDidChange?(text: textView.text)
     }
 }

@@ -58,14 +58,14 @@
 		53805DC21CEA922E003186BF /* Observer-example */ = {
 			isa = PBXGroup;
 			children = (
-				53805DD51CEA9501003186BF /* Observable */,
+				53805DCF1CEA922E003186BF /* Info.plist */,
 				53805DC31CEA922E003186BF /* AppDelegate.swift */,
 				53805DC51CEA922E003186BF /* ViewController.swift */,
-				53805DC71CEA922E003186BF /* Main.storyboard */,
+				53805DD81CEB81F8003186BF /* SecondViewController.swift */,
 				53805DCA1CEA922E003186BF /* Assets.xcassets */,
 				53805DCC1CEA922E003186BF /* LaunchScreen.storyboard */,
-				53805DCF1CEA922E003186BF /* Info.plist */,
-				53805DD81CEB81F8003186BF /* SecondViewController.swift */,
+				53805DC71CEA922E003186BF /* Main.storyboard */,
+				53805DD51CEA9501003186BF /* Observable */,
 			);
 			path = "Observer-example";
 			sourceTree = "<group>";

@@ -25,29 +25,29 @@ With the ObservableSwitch you are able to combine signals and run some code depe
 Bellow you can see how we can enable/disable a UIButton based on the length of the username and password fields.
 
 ```swift
-        let obSwitch = ObservableSwitch()
-        
-        // .count is a custom property from ObservableTextField used
-        // to get the correct count value inside the UITextField
-        // shouldChangeCharactersInRange delegate method
+let obSwitch = ObservableSwitch()
 
-        obSwitch.addSignal({ self.username.count >= 4 })
-        obSwitch.addSignal({ self.password.count >= 4 })
-        
-        obSwitch.action = { (status: Bool) -> () in
-            self.signin.alpha   = (status) ? 1 : 0.5
-            self.signin.enabled = status
-        }
-        
-        // .validate checks all signals inside the switch
-        // and return the status to the .action callback
-        self.username.valueDidChange = { (text: String) -> () in
-            obSwitch.validate()
-        }
-        
-        self.password.valueDidChange = { (text: String) -> () in
-            obSwitch.validate()
-        }
+// .count is a custom property from ObservableTextField used
+// to get the correct count value inside the UITextField
+// shouldChangeCharactersInRange delegate method
+
+obSwitch.addSignal({ self.username.count >= 4 })
+obSwitch.addSignal({ self.password.count >= 4 })
+
+obSwitch.action = { (status: Bool) -> () in
+    self.signin.alpha   = (status) ? 1 : 0.5
+    self.signin.enabled = status
+}
+
+// .validate checks all signals inside the switch
+// and return the status to the .action callback
+self.username.valueDidChange = { (text: String) -> () in
+    obSwitch.validate()
+}
+
+self.password.valueDidChange = { (text: String) -> () in
+    obSwitch.validate()
+}
 ```
 
 ![Alt text](https://raw.githubusercontent.com/colatusso/Observable.Swift/master/Observable3.gif)

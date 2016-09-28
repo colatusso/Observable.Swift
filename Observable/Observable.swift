@@ -2,17 +2,17 @@ import UIKit
 
 class Observable<T> {
     var valueDidChange:(()->())?
-    private var _switch: ObservableSwitch?
-    private var _value: T? = nil
+    fileprivate var _switch: ObservableSwitch?
+    fileprivate var _value: T? = nil
     
     var value: T {
         set {
-            self._value = newValue
-            self._switch?.validate()
-            self.valueDidChange?()
+            _value = newValue
+            _switch?.validate()
+            valueDidChange?()
         }
         get {
-            return self._value!
+            return _value!
         }
     }
     
@@ -20,81 +20,81 @@ class Observable<T> {
         self.value = value
     }
     
-    func addSignal(signal: () -> Bool, toSwitch: ObservableSwitch) {
+    func addSignal(_ signal: @escaping () -> Bool, toSwitch: ObservableSwitch) {
         self._switch = toSwitch
         self._switch?.addSignal(signal)
     }
 }
 
 class ObservableTextField: UITextField, UITextFieldDelegate {
-    var textDidChange:((text: String)->())?
-    private var _switch: ObservableSwitch?
+    var textDidChange:((_ text: String)->())?
+    fileprivate var _switch: ObservableSwitch?
     var count = 0
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        self.delegate = self
+        delegate = self
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch string {
             case "":
                 // backspace
-                let str = self.text!.substringToIndex(self.text!.endIndex.predecessor())
-                self.count = str.characters.count
-                self.textDidChange?(text: str)
+                let str = text!.substring(to: text!.characters.index(before: text!.endIndex))
+                count = str.characters.count
+                textDidChange?(str)
             default:
-                self.count = self.text!.characters.count + string.characters.count
-                self.textDidChange?(text: self.text! + string)
+                count = text!.characters.count + string.characters.count
+                textDidChange?(text! + string)
         }
         
-        self._switch?.validate()
+        _switch?.validate()
 
         return true
     }
     
-    func addSignal(signal: () -> Bool, toSwitch: ObservableSwitch) {
+    func addSignal(_ signal: @escaping () -> Bool, toSwitch: ObservableSwitch) {
         self._switch = toSwitch
         self._switch?.addSignal(signal)
     }
 }
 
 class ObservableTextView: UITextView, UITextViewDelegate {
-    var textDidChange:((text: String)->())?
-    private var _switch: ObservableSwitch?
+    var textDidChange:((_ text: String) -> ())?
+    fileprivate var _switch: ObservableSwitch?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        self.delegate = self
+        delegate = self
     }
     
-    func textViewDidChange(textView: UITextView) {
-        self._switch?.validate()
-        self.textDidChange?(text: textView.text)
+    func textViewDidChange(_ textView: UITextView) {
+        _switch?.validate()
+        textDidChange?(textView.text)
     }
     
-    func addSignal(signal: () -> Bool, toSwitch: ObservableSwitch) {
+    func addSignal(_ signal: @escaping () -> Bool, toSwitch: ObservableSwitch) {
         self._switch = toSwitch
         self._switch?.addSignal(signal)
     }
 }
 
 class ObservableSwitch {
-    private var signals: [() -> Bool] = []
-    var action:((status: Bool)->())?
+    fileprivate var signals: [() -> Bool] = []
+    var action:((_ status: Bool)->())?
     
-    private func addSignal(signal: () -> Bool) {
+    fileprivate func addSignal(_ signal: @escaping () -> Bool) {
         self.signals.append(signal)
     }
     
-    private func validate() {
+    fileprivate func validate() {
         for check in signals {
             if !check() {
-                self.action?(status: false)
+                action?(false)
                 return
             }
         }
         
-        self.action?(status: true)
+        action?(true)
     }
 }

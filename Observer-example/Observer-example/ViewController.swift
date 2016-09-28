@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         self.resetSilvioIpsum()
         
         self.label.text = self.word.value
-        self.word.valueDidChange = {
+        self.word.valueDidChange = { [unowned self] in
             self.label.text = self.word.value
             self.label.textColor = self.getRandomColor()
         }
@@ -29,9 +29,9 @@ class ViewController: UIViewController {
     }
     
     func rotate() {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
+        let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             if self.words.count > 0 {
                 self.word.value = self.words.first!
                 self.words.removeFirst()

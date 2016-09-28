@@ -16,7 +16,7 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textField.textDidChange = {(text: String) -> () in
+        self.textField.textDidChange = { [unowned self] (text: String) -> () in
             self.label.text = "Hi \(text)!"
         }
         

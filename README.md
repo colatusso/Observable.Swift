@@ -9,7 +9,7 @@ Simple, useful and easy to use.
 var n = Observable(1)
 var c: Int = 0
 
-n.valueDidChange = {
+n.valueDidChange = { [unowned self] in
     c = n.value // 2 then 3
 }
 
@@ -27,14 +27,14 @@ Bellow we enable/disable a UIButton based on the length of the username and pass
 
 ```swift
 let obSwitch = ObservableSwitch()
-obSwitch.action = { (status: Bool) -> () in
+obSwitch.action = { [unowned self] (status: Bool) -> () in
     self.signin.alpha   = (status) ? 1 : 0.5
     self.signin.enabled = status
 }
 
 // ObservableTextField properties
-self.username.addSignal({ self.username.count >= 4 }, toSwitch: obSwitch)
-self.password.addSignal({ self.password.count >= 4 }, toSwitch: obSwitch)
+self.username.addSignal({ [unowned self] in self.username.count >= 4 }, toSwitch: obSwitch)
+self.password.addSignal({ [unowned self] in self.password.count >= 4 }, toSwitch: obSwitch)
 
 ```
 
@@ -43,7 +43,7 @@ self.password.addSignal({ self.password.count >= 4 }, toSwitch: obSwitch)
 ObservableTextField:  
 
 ```swift
-self.textField.textDidChange = {(text: String) -> () in
+self.textField.textDidChange = { [unowned self] (text: String) -> () in
 	self.label.text = "Hi \(text)!"
 }
 ```

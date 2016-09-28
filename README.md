@@ -53,7 +53,7 @@ self.textField.textDidChange = { [unowned self] (text: String) -> () in
 Observable<T>:  
 
 ```swift
-self.word.valueDidChange = {
+self.word.valueDidChange = { [unowned self] in
     self.label.text = self.word.value
     self.label.textColor = self.getRandomColor()
 }

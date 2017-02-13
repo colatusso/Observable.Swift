@@ -44,16 +44,14 @@ self.password.addSignal({ [unowned self] in self.password.count >= 4 }, toSwitch
 // strong passwords switch
 let obSwitchGreatPassword = ObservableSwitch(.AnyState)
 obSwitchGreatPassword.action = { [unowned self] (status: Bool) -> () in
-    self.signin.backgroundColor = (status) ?
-        UIColor.green :
-        UIColor.blue
+    self.signin.backgroundColor = (status) ? UIColor.green : UIColor.blue
 }
 
 self.password.addSignal({ [unowned self] in self.password.count > 10 }, toSwitch: obSwitchGreatPassword)        
 
 // master password switch
 let obSwitchMasterPassword = ObservableSwitch(.OnlyTrue)
-obSwitchMasterPassword.action = { (status: Bool) -> () in
+obSwitchMasterPassword.action = { [unowned self] (status: Bool) -> () in
     let alertController = UIAlertController(title: "I know!", message: "It rocks!!!", preferredStyle: .alert)
     let action = UIAlertAction(title: "=)", style: .default, handler: nil)
     alertController.addAction(action)

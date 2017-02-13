@@ -37,7 +37,7 @@ class ThirdViewController: UIViewController {
         
         // master pass switch
         let obSwitchMasterPassword = ObservableSwitch(.OnlyTrue)
-        obSwitchMasterPassword.action = { (status: Bool) -> () in
+        obSwitchMasterPassword.action = { [unowned self] (status: Bool) -> () in
             let alertController = UIAlertController(title: "I know!", message: "It rocks!!!", preferredStyle: .alert)
             let action = UIAlertAction(title: "=)", style: .default, handler: nil)
             alertController.addAction(action)

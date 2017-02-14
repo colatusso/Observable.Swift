@@ -53,22 +53,11 @@ class ObservableTextField: UITextField, UITextFieldDelegate {
         delegate = self
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        switch string {
-            case "":
-                // backspace
-                let str = text!.substring(to: text!.characters.index(before: text!.endIndex))
-                count = str.characters.count
-                textDidChange?(str)
-            default:
-                count = text!.characters.count + string.characters.count
-                textDidChange?(text! + string)
-        }
-
-        return true
-    }
-    
     func textFieldDidChange(_ textField: UITextField) {
+        count = textField.text!.characters.count
+        
+        textDidChange?(textField.text!)
+        
         for s in self._switches {
             s.validate()
         }

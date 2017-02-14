@@ -37,17 +37,11 @@ obSwitch.action = { [unowned self] (status: Bool) -> () in
     self.signin.enabled = status
 }
 
-// username and password are ObservableTextField properties
-self.username.addSignal({ [unowned self] in self.username.count >= 4 }, toSwitch: obSwitch)
-self.password.addSignal({ [unowned self] in self.password.count >= 4 }, toSwitch: obSwitch)
-
 // strong passwords switch
 let obSwitchGreatPassword = ObservableSwitch(.AnyState)
 obSwitchGreatPassword.action = { [unowned self] (status: Bool) -> () in
     self.signin.backgroundColor = (status) ? UIColor.green : UIColor.blue
 }
-
-self.password.addSignal({ [unowned self] in self.password.count > 10 }, toSwitch: obSwitchGreatPassword)        
 
 // master password switch
 let obSwitchMasterPassword = ObservableSwitch(.OnlyTrue)
@@ -59,6 +53,10 @@ obSwitchMasterPassword.action = { [unowned self] (status: Bool) -> () in
     self.present(alertController, animated: true, completion: nil)
 }
 
+// adding the signals to the ObservableTextField properties
+self.username.addSignal({ [unowned self] in self.username.count >= 4 }, toSwitch: obSwitch)
+self.password.addSignal({ [unowned self] in self.password.count >= 4 }, toSwitch: obSwitch)
+self.password.addSignal({ [unowned self] in self.password.count > 10 }, toSwitch: obSwitchGreatPassword)        
 self.password.addSignal({ [unowned self] in self.password.text == "swift rocks" }, toSwitch: obSwitchMasterPassword)
 
 ```

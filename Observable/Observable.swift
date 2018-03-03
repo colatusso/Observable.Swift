@@ -47,14 +47,24 @@ class ObservableTextField: UITextField, UITextFieldDelegate {
     var textDidChange:((_ text: String)->())?
     var count = 0
     
+    convenience init() {
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        delegate = self
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         delegate = self
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
-        count = textField.text!.characters.count
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        count = textField.text!.count
         
         textDidChange?(textField.text!)
         
@@ -138,3 +148,4 @@ class ObservableSwitch {
         }
     }
 }
+
